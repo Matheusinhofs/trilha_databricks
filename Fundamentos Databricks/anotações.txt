@@ -1,0 +1,27 @@
+- Fundamentos de Databricks
+    - Cenários complexos de dados por haver silos de dados e informações
+    - Muitas ferramentas, diferentes sistemas
+    - Então foi criado o Data Warehouse para manter os dados em um local e distribuir em data marts
+    - Com dados não estruturados e novos desafios surgiram o Data Lake e o Lakehouse 
+    - Com novos desafios de negócio, o lakehouse tem o melhor dos mundos de data lake e data warehouse
+    - O Databricks possui features para diferentes ferramentas e soluções, como engenheiros, analistas e cientistas de dados
+    - Pelo unity catalog pode trabalhar com a parte de segurança, colaboração, qualidade e gerenciamento
+
+- Unity Catalog
+    - Abordagem moderna de governança de dados
+    - Visão geral de governança
+        - Controle de acesso aos dados 
+        - Auditoria de acesso aos dados   
+            - Registra quem esta acessando o que 
+        -  Linhas de origem e destino dos dados 
+            - Rastrear as origens (upstream) e os consumidores (downstream) dos dados
+        - Descoberta de dados (Data Discovery)
+    
+    - Arquitetura do Unity Catalog
+        - Metastore: é o armazenamento físico do que utilizamos no databricks, utiliza cloud definida por ele. 
+        - Catalog: é onde temos o armazenamento lógico do schema e database
+            - Schema: agrupar as tabelas em partes dentro do catálogo
+            
+
+
+
