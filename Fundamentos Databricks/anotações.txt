@@ -21,7 +21,13 @@
         - Metastore: é o armazenamento físico do que utilizamos no databricks, utiliza cloud definida por ele. 
         - Catalog: é onde temos o armazenamento lógico do schema e database
             - Schema: agrupar as tabelas em partes dentro do catálogo
-            
+                - Objetos dentro do schema:
+                    - Tabelas 
+                    - View
+                    - Volume
+                    - Function 
+                    - Model
+                        
 
 
 
