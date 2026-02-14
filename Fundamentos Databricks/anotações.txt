@@ -27,7 +27,48 @@
                     - Volume
                     - Function 
                     - Model
-                        
+            - Delta Table: garante que vai ser um arquivo comprimido com as características de uma transação ACID
+                - Possui um LOG com as alterações que foram feitas no parquet
+                - O arquivo é sempre um parquet mas com o LOG de alteração salvo
+            - Tabelas Managed vs Unmanaged 
+                - Tabalas Managed são tabelas que são salvas no databricks com os dados e os metadados
+                - Já as tabelas unmanaged são tabelas em que apenas o metadado é salvo no databricks 
+                - Quando é feito o drop table, as tabelas gerenciadas são excluídos os dados e metadados. E as externas são excluídos apenas os metadados
+                - A sintaxe é muito semelhante para criação mas quando é salvo uma tabela externa precisa do LOCATION e onde é salvo esta tabela
+                - As tabelas gerenciadas são gerenciadas automaticamente, com a possibilidade de auto tune, otimização preditiva, caching e etc. Já as externas você precisa fazer tudo isso
+                - As tabelas gerenciadas aceita apenas Delta, já as externas vários formatos de arquivo como CSV, JSON, PARQUET
+            - View: permite criar visualizações de uma tabela mas de forma lógica, semelhante ao SQL  
+            - Volume: permite salvar arquivos de diferentes tipos, são raw files 
+                - Aceita qualquer tipo de arquivo
+                - O uso do volume permite o trabalho de difetentes times que trabalham com diferentes tipos de arquivos
+                    - Ex: time de ciência de dados que trabalha com a predição através de imagens 
+                - É possível criar uma view temporária que funciona enquanto aquele cluster estiver ligado, algo que é gerado no contexto 
+            - Function: é semelhante ao stored procedures, uma forma de gravar KPIs dentro do SQL para reutilizar depois 
+            - Model: permite criar os modelos de machine learning e gerenciar ele no unity catalog
+
+        - External Storage Access: permite acessar dados que estão salvos fora do databricks 
+            - Tudo que esta externo ao catalog e precisa declarar a URL
+        - Query Federation: permite consultar dados fora do databricks sem movê-los para dentro do databricks 
+        - Delta sharing: Padrão aberto de compartilhamento de dados seguro, criado pelo databricks
+        - A parte de governança do databricks permite direcionar o que cada usuário ou grupo pode fazer no databricks (querys, catalog,...) 
+        - Cada vez que a tabela é modificada, ele salva o estado que ela estava. 
+            - Isso permite o time travel da tabela, podendo voltar a um estado que você deseja
+- Lakeflow 
+    - Atende o desafio de ingestão de dados de múltiplas fontes de dados 
+        - Múltiplos arquivos de txt, excel,...
+        - Sistemas legados
+        - Database
+        - Saas Application
+    - Forma unificada de engenharia de dados, com conectores, declaratives pipelines e os Jobs 
+    - Lakeflow Connect:
+        - Possui alguns conectores próprios do databricks, vai só passando os parâmetros necessários ou logins no sistema
+        - Tem conectores com parceiros homologados pelo databricks 
+        - Os conectores padrões permitem que o databricks leia arquivos como txt,csv e etc em diversas clouds 
+    -   
+
+
+
+
 
 
 
