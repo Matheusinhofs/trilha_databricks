@@ -64,11 +64,14 @@
         - Possui alguns conectores próprios do databricks, vai só passando os parâmetros necessários ou logins no sistema
         - Tem conectores com parceiros homologados pelo databricks 
         - Os conectores padrões permitem que o databricks leia arquivos como txt,csv e etc em diversas clouds 
-    -   
-
-
-
-
-
-
-
+    - Existe uma hierarquia de criação de Catalogo -> Schemas -> Volumes    
+    - Para a aula de lakeflow foi criado o catálogo, schema para a arquitetura medalhão, criação dos volumes e consumo dos dados para gerar as tabelas  
+    - Os volumes são containers de arquivos no Unity Catalog 
+        - Permite armazenar arquivos não estruturados e semi estruturados
+        - Além de garantir governança e controle de acesso granular
+    - Ao trocar de notebook sempre verificar qual schema e catálogo estão sendo utilizados
+    - Você pode até realizar uma query dos arquivos que foram lançados no volume 
+    - Batch com CTA
+        - Create table select * from ()
+        - Ele faz algo muito semelhante a uma CTE 
+    -     
