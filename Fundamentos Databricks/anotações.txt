@@ -74,4 +74,27 @@
     - Batch com CTA
         - Create table select * from ()
         - Ele faz algo muito semelhante a uma CTE 
-    -     
+        - Sempre faz um overwrite, ou seja, realiza uma atualização full dos dados 
+    - Incremental usando o COPY INTO 
+        - Ele faz uma atualização dos dados de acordo com algum critério ou valor de campo
+        - Esta sendo descontinuado pelo databricks 
+    - Hoje o databricks trabalha principalmente com o Auto Loader + Lakeflow
+    - Data Ingestion from Cloud Storage - Auto Loader + Lakeflow
+        - Ingestão incremental e eficiente 
+        - Conforme os arquivos chegam ele atualiza de forma incremental os dados
+        - Suporta python e sql 
+        - Pode ser usado para consumir arquivos em clouds
+        - Pipelines Spark Declarative Pipeline 
+            - Nova forma do Databricks de desenvolver usando apenas SQL para fazer sua extração, transformação, observabilidade e etc. 
+            - Consegue acoplar com todos os conectores do Databricks 
+            - Utilizamos no FROM o STREAM cloud_files e então o local que está o arquivo 
+            - A pipeline pode ser contínua ou com trigger 
+            - Pode adicionar os metadados 
+            - Além disso é possível criar tags com o table properties
+            - "cloudFiles.schemaEvolutionMode" - a evolução do schema é como o schema pode ser alterado de acordo com as mudanças na tabela 
+                - Padrão é addNewColumns: adiciona uma coluna conforme o arquivo de origem      
+                - Rescue: cria uma coluna nova com um json com as colunas que foram adicionadas 
+                - Fail on New Columns> toda vez que tiver alteração no schema, ele vai gerar uma falha e não vai rodar a pipeline 
+                - None: nova coluna é ignorada, não entrando no schema 
+            - 
+                
