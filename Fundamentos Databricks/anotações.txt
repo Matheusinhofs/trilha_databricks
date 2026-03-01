@@ -96,5 +96,34 @@
                 - Rescue: cria uma coluna nova com um json com as colunas que foram adicionadas 
                 - Fail on New Columns> toda vez que tiver alteração no schema, ele vai gerar uma falha e não vai rodar a pipeline 
                 - None: nova coluna é ignorada, não entrando no schema 
-            - 
-                
+    - O CREATE TABLE depende muito do que é declarado
+    - O COPY INTO tem uma semelhança dessa dependência 
+    - Já o AUTO LOADER ele altera de acordo com seus critérios 
+
+- Lakeflow Jobs 
+    - Orquestração: definir a ordem com que vai rodar seus notebooks em seu pipeline
+        - Não executa nenhuma delas, apenas define a ordem de execução 
+    - Desafio da orquestração:
+        - Menor produtividade por precisar de alguém que fique mais tempo nesta solução 
+        - Custos mais altos e menor confiança
+        - Falta de integração com o lakehouse 
+    - O Lakeflow Jobs oferece a orquestração de maneira unificada na plataforma do Databricks 
+        - Todo fluxo ocorre dentro da plataforma 
+        - Permite programar suas triggers: em determinados horários, contínuos, adição de arquivos, adição de dados em uma tabela (arquitetura de eventos)
+    - Task é a menor unidade de processo que deseja executar 
+    - JOB é toda a pipeline completa no conjunto de task
+        - Agenda execuções
+        - Coordenar tarefas
+        - Executar operações de processamento 
+    - Diferentes tipos de computação (clusters) do databricks 
+        - Serverless: versão mais simples, rápida, fácil e eficiente. Ele já trabalha com auto ajustável
+        - Interative Clusters: all purpouse cluster, ajuda a rodar os notebooks.
+        - Job Clusters: você define qual a máquina que vai ser utilizada para rodar seus notebooks
+        - SQL Warehouse: é de auto scale, trabalha com basicamente SQL,              
+    - No JOB é possível selecionar o notebook que vai executar criando as tasks, em seguida o tipo de compute que vai executar a task e também a compute do JOB geral
+    - Além disso, tem como criar parâmetros que podem ser usados nos notebooks 
+    - Pode-se ainda selecionar a forma de trigger, as notificações, as formas de repetição,...
+    - Consegue acompanhar ainda o resultado do pipeline e os logs de execução de cada etapa 
+    - Na pipeline podemos criar uma task sequencial, criando dependências de execução
+
+
