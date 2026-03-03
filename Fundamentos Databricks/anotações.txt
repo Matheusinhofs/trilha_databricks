@@ -125,5 +125,15 @@
     - Pode-se ainda selecionar a forma de trigger, as notificações, as formas de repetição,...
     - Consegue acompanhar ainda o resultado do pipeline e os logs de execução de cada etapa 
     - Na pipeline podemos criar uma task sequencial, criando dependências de execução
-
-
+    - Tipos de Triggers:
+        - Scheduled: programa para rodar em determinados intervalos, horários e etc.
+        - Continuous: roda sempre que um JOB finaliza, e não trabalha com JOBs sequenciais
+        - File Arrived: funciona baseada em eventos, toda vez que sobe um arquivo ele atualiza
+        - Table Update: sempre que tem uma atualização da tabela de forma manual 
+        - Manual: usuário inicia
+    - O que é uma DAG?
+        - É a representação conceitual de uma sequência de atividades, como fluxos de processamento
+        - Directed (Direcionado): tem uma direção, funciona de forma sequencial
+        - Acyclic (Acíclico): indica que o grafo não funciona de forma circular
+        - Graph (Grafo): é uma coleção de vértices(tasks) conectados por arestas(dependências)
+    - 
