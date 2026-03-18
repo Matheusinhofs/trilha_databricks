@@ -136,4 +136,4 @@
         - Directed (Direcionado): tem uma direção, funciona de forma sequencial
         - Acyclic (Acíclico): indica que o grafo não funciona de forma circular
         - Graph (Grafo): é uma coleção de vértices(tasks) conectados por arestas(dependências)
-    - 
+        
