@@ -136,4 +136,13 @@
         - Directed (Direcionado): tem uma direção, funciona de forma sequencial
         - Acyclic (Acíclico): indica que o grafo não funciona de forma circular
         - Graph (Grafo): é uma coleção de vértices(tasks) conectados por arestas(dependências)
-        
+
+- Lakeflow Declarative Pipeline
+    - Spark Declarative Pipeline - como o databricks chamava o lakeflow declarative pipeline
+        - Como usar o spark de forma declarativa, para otimizar a execução
+        - Construção de pipelines de dados de maneira declarativa
+    - Além do processo de transformação existe uma variedade de ferramentas e operações em plataformas de dados
+    - Com uma série de ferramentas, gera-se uma complexidade operacional, com isso o databicks traz uma solução para simplificar tudo
+    - Foca apenas no que importa, nas transformações e aplicações de regras de negócio
+    - Traz toda a visão do pipeline em um único lugar
+                 
