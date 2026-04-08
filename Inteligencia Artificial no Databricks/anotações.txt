@@ -1,0 +1,13 @@
+Inteligência Artificial no Databricks 
+    - Dois tipos de usar um agente:
+        - Paga por requisição 
+        - Paga por uma máquina - precisa de um servidor mais robusto
+    - No projeto da aula vai ser usado o langchain para esse case 
+    - Buscar sempre trazer a área de negócio próximo ao desenvolvimento do prompt
+    - Playground do Databricks ele cria um agente, claro que uma versão gratuita
+    - O experiments é a parte de ML Flow, com os projetos de machine learning realizando o deploy dele
+    - As features é a parte de tools e ferramentas que o agente vai usar 
+    - Os models são modelos nativos que já existem no databricks
+    - O serving são os endpoints que podemos criar ou utilizar (modelos normalmente open source)
+    -      
+    
