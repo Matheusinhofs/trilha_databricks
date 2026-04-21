@@ -1,0 +1,57 @@
+- Modelagem de Dados
+    - A aula vai fazer um Data Warehouse usando a arquitetura medalhão com delta lake
+    - Fundamentos:
+        - Por que modelar? 
+            - A performance de um banco pode não ser adequada para a parte de analytics
+            - O sistema tem que funcionar de forma transacional
+                - Se acessar o banco de forma direta, pode derrubar o banco transacional
+            - Ou seja, cada um tem sua função, não sendo adequado trabalhar a parte analítica no sistema transacional
+            - O analytics pensa em histórico, já o transacional não 
+        - Para isso a solução é buscar a modelagem de dados para um sistema analítico, com benefícios como:
+            - Performance superior para analytics
+            - Garante qualidade de análise
+            - Traz o histórico completo 
+            - Produtividade aumentada, com queries mais rápidas
+            - ROI crescente: decisões mais corretas tomadas de forma mais rápida  
+        - Arquitetura Medallion:
+            - É um desing pattern recomendado para organizar dados em um lakehouse através de camadas de qualidade e refinamento
+            - A arquitetura medallion não é a modelagem de dados, sendo a modelagem o star schema, snowflake schema e etc. 
+            - Por que utilizamos a arquitura medallion?
+                - Problemas com ETL tradicional (monolítico): abordagem tudo ou nada, difícil de debugar e identificar erros, código não reutilizável, manutenção complexa.
+                - Soluções com Medallion: cada camada tem seu valor específico, fácil de debugar, reutilizável em outras aplicações, separações claras de funções entre elas.     
+    - Camada Bronze: Raw Data (dados brutos)
+        - Busca armazenar dados exatamente como veio da fonte
+        - Preserva como vem do sistema 
+        - Normalmente vem dados como string
+        - Função de auditoria 
+    - Camada Silver: Cleansed & Validated (limpo e validado)
+        - Busca a limpeza dos dados
+            - Remover duplicatas, tratar valores nulos, padronizar formatos 
+        - Validação e conversão
+            - Conversão de tipos de dados, validações de valores e regras de negócio, normalização de valores. 
+        - Enriquece os dados
+            - Cálculos de campos derivados, Join entre fontes, aplicação de regras.
+        - Slowly Changing Dimensions (SCD) Type 2
+            - Rastreamento de mudanças hgistóricas, versionamento de registros, preservação do contexto temporal 
+        - Padrões:
+            - Incremental com MERGE INTO: processa dados novos ou alterados
+            - Watermark Temporal: geralmente últimos 60-90 dias, onde não podem haver mudanças mais nos dados         
+            - Idempotência via row_hash: pode reprocessar sem gerar inconsistência 
+            - Deduplicação Determinística: usa ROW_NUMBER() OVER()... com critérios claros      
+    - Camada Gold: Business-Ready(Modelagem dimensional)
+        - Modelagem Dimensional:implementação de Star Schema, definição clara de granularidade, criação de conformed dimensions.
+        - Nomeclatura Orientada a Negócio: gold.dim_cliente,  prefixos padronizados (sk_: surrogate key,nk_: natural key, fk_: foreign key)
+        - Agregações e Views: views de conveniência para anãlises comuns, KPIs pré calculados, métricas de negócio pré definidas.   
+    
+    - Delta Lake: A Fundação Tecnológica
+        - Todas as camadas da arquitetura utilizam Delta Lake, formato de armazenamento open-source desenvolvido pelo Databricks que adiciona recursos críticos ao parquet 
+        - ACID Transactions: garante a atomicidade, consistência, isolamento e durabilidade. Múltiplos processos podem escrever simultaneamente sem conflitos 
+        - Time Travel: capacidade de acessar versões anteriores dos dados, sendo útil para auditoria, debugging e recuperação de erros
+        - Schema Evolution: adicionar ou modificar colunas sem quebrar pipelines existentes, com mudanças de schema rastreadas e versionadas 
+        - MERGE, UPDATE, DELETE: operações DML que o parquet sozinho não suporta, sendo essenciais para SCD e deduplicação 
+        - Performance otimizada: Data skipping automático reduz dados lidos. Z-ordering melhora performance de queries, compactação automática de arquivos pequenos 
+    - Data Warehouse e Data Lakehouse:
+        - O dw só tem dados estruturados e o lakehouse pode ter dados estruturados e não estruturados. 
+        - Armazenamento do lakehouse é mais barato que o dw 
+        -             
+            

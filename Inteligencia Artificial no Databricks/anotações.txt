@@ -9,5 +9,9 @@ Inteligência Artificial no Databricks
     - As features é a parte de tools e ferramentas que o agente vai usar 
     - Os models são modelos nativos que já existem no databricks
     - O serving são os endpoints que podemos criar ou utilizar (modelos normalmente open source)
-    -      
-    
+    - RAG: trabalha semelhante à uma pipeline, com a ingestão de dados, em seguida quebrar ele por chuncks, criar uma matriz vetorial para a IA aprender e em seguida gravar no banco.
+        - A LLM terá acesso à esse chunck e ao seu banco vetorial.
+        - Existem semelhanças do RAG ao processo de ETL, mas considerando que há ainda o aprendizado da IA
+        - Quando fazemos uma busca semântica, temos que ter na mente o que mais se assemelha ao que pede. 
+    - O Databricks disponibiliza em sua compute o Vcetor Search, para justamente esses modelos vetoriais 
+    - Na coluna de descrição ele busca todas as características do produto podendo o cliente descrever o que deseja e a IA busca nesta coluna todas as características descritas
