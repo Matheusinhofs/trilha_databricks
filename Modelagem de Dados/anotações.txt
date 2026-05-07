@@ -109,6 +109,12 @@
                 - 5W1H: quem, quando, por quê, o quê, onde e como 
                 - Segmentações, períodos, categorias, mix, ...
                 - Busque o máximo de dimensões que se aplicam à fato 
+                - SCD Type 2: no mundo real as dimensões não são estáticas: pessoas mudam de endereço, produtos de categorias, ...
+                    - Teria que pensar em histórico, criando uma nova linha para as mudanças no registro 
+                    - Utiliza uma data de início de vigência, uma data de fim de vigência e se o registro é atual 
+                    - Histórico completo e preciso
+                    - Análises corretas e com possibilidade de mudanças 
+                    - A SCD tipo 2 é a mais utilizada 
             - Identificar os fatos 
                 - Liste todas as métricas numéricas que o processo define 
                 - "O que estamos medindo no processo?"
@@ -122,5 +128,3 @@
                 - Armazenar fatos derivadas comuns 
                 - Documentar as lógicas de cálculo 
                 - Usar row_hash para garantir Idempotência ao reprocessar
-            - 
-
