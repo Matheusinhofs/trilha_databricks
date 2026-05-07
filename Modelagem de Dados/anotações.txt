@@ -53,5 +53,74 @@
     - Data Warehouse e Data Lakehouse:
         - O dw só tem dados estruturados e o lakehouse pode ter dados estruturados e não estruturados. 
         - Armazenamento do lakehouse é mais barato que o dw 
-        -             
-            
+        - A escala do dw normalmente é vertical, sendo um pouco limitada, já o lakehouse é uma escala horizontal, praticamente infinita.
+    
+    - Modelagem Dimensional
+        - Abordagem Bottom-Up de Kimball:
+            - Foco em processos de negócios específicos 
+            - Prioriza a usabilidade na empresa, o objetivo de negócio 
+            - Otimiza a performance de queries 
+            - Adotar pragmatismo - entregar valor rapidamente e iterar
+            - Busca entregar valor mais rápido
+            - Naturamente incremental, aos poucos pode entregar 
+        - Star Schema:
+            - Tabela fato e dimensões que orbitam essas fatos
+            - Na Tabela Fato temos as métricas e valores que demonstram o fato
+                - Grande volume de dados
+                - Cada linha representa UM evento
+                - Relacionamentos com foreign key
+                - Poucas colunas que importam para o fato 
+                - Existem tipos de fatos: aditivos, semi aditivos e não aditivos 
+            - As Tabelas Dimensões oferecem contextos
+                - Cliente, produto, tempo, promoção, categoria, ...
+                - Relativamente baixa em volume 
+                - Denormalização: hierarquias armazenadas na mesma tabela 
+                - Muitas colunas para demonstrar os atributos 
+                - Surrogate Keys: chaves artificiais geradas, não id de origem 
+                    - Proteção contra mudanças 
+                    - Suporte a SCD tipo 2
+                    - Performance: INTs são mais rápidos que STRINGs para Join, mas pode usar um UID 
+                    - Independência do sistema fonte  
+            - Possui Joins diretos
+            - Granularidade define o nível de detalhe que cada linha na tabela fato representa 
+                - Decisão mais crítica da modelagem dimensional 
+                - Sempre escolher o grain (grão) mais atômico, detalhado, possível
+                - Gera flexibilidade futura
+                - Agregações são mais fáceis de realizar
+                - Impossível de desagregar 
+                - Custo de storage é baixo 
+            - Dimensões conformadas: são dimensões que compartilham características com as fatos, como por exemplo calendário, cliente, região, ...
+                - Gera uma única fonte da verdade, todas as áreas falam a mesma coisa  
+                - Drill-Acriss Queries: permite análises que cruzam processos  
+                - Manutenção simplificada 
+        - Processo de 4 Etapas de Kimball:
+            - Selecionar o processo de negócio
+                - Escolher um processo específico para modelar 
+                - Uma atividade operacional que gera ou captura métricas mensuráveis 
+                    - Ex: vendas, logística, marketing, manufatura, atendimento ao cliente,...
+                - Critérios para seleção: alinhamento estratégico, disponibilidade de dados, impacto potencial, complexidade gerenciável
+                - Não modele toda a empresa de uma vez
+            - Declarar o grain (grão)
+                - Definir explicitamente o nível de detalhe de cada linha 
+                - Que perguntas precisamos responder
+                - SEMPRE escolher o grain mais atômico possível
+            - Identificar as dimensões
+                - Liste todas as dimensões que descrevem o contexto do processo, de acordo com o grain escolhido
+                - 5W1H: quem, quando, por quê, o quê, onde e como 
+                - Segmentações, períodos, categorias, mix, ...
+                - Busque o máximo de dimensões que se aplicam à fato 
+            - Identificar os fatos 
+                - Liste todas as métricas numéricas que o processo define 
+                - "O que estamos medindo no processo?"
+                - Fatos armazenados: são mais diretos, como por exemplo quantidade, preço unitário e etc 
+                - Fatos derivados: são fatos calculados, como quantidade * preço, valor total - desconto 
+                - Armazenar vs Calcular:
+                    - Armazenar gera queries mais rápidas
+                    - Maior consistência 
+                    - Usa mais espaço de storage
+                    - Se muda a lógica precisa reprocessar
+                - Armazenar fatos derivadas comuns 
+                - Documentar as lógicas de cálculo 
+                - Usar row_hash para garantir Idempotência ao reprocessar
+            - 
+
